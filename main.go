@@ -100,10 +100,6 @@ func userMenu() {
 		}
 	}
 }
-
-// Blockchain functionality starts here
-
-// NewBlock creates a new block and adds it to the blockchain
 func NewBlock(transaction string, nonce int, previousHash string) *Block {
 	block := Block{
 		Transaction:  transaction,
@@ -116,7 +112,6 @@ func NewBlock(transaction string, nonce int, previousHash string) *Block {
 	return &block
 }
 
-// ListBlocks prints all blocks in the blockchain
 func ListBlocks() {
 	for i, block := range Blockchain {
 		fmt.Printf("Block %d:\n", i)
@@ -127,7 +122,6 @@ func ListBlocks() {
 	}
 }
 
-// ChangeBlock modifies the transaction of a block and recalculates its hash
 func ChangeBlock(index int, newTransaction string) {
 	if index < 0 || index >= len(Blockchain) {
 		fmt.Println("Invalid block index.")
@@ -140,7 +134,7 @@ func ChangeBlock(index int, newTransaction string) {
 	fmt.Println("Block transaction updated.")
 }
 
-// VerifyChain verifies the integrity of the blockchain by checking hashes
+
 func VerifyChain() {
 	for i := 1; i < len(Blockchain); i++ {
 		currentBlock := Blockchain[i]
@@ -159,7 +153,7 @@ func VerifyChain() {
 	fmt.Println("Blockchain is valid.")
 }
 
-// CalculateHash calculates a SHA-256 hash for the given block data
+
 func CalculateHash(transaction string, nonce int, previousHash string) string {
 	hashData := transaction + strconv.Itoa(nonce) + previousHash
 	hash := sha256.New()
